@@ -944,3 +944,13 @@ a, button, summary, label, .chip { touch-action: manipulation; -webkit-tap-highl
   body.nav-open .site-header { z-index: 300; }
   .nav { height: 100vh; height: 100dvh; }
 }
+
+/* ---------- Floating donate (phones): only after scrolling past the hero buttons ---------- */
+@media (max-width: 760px) {
+  .float-donate { opacity: 0; transform: translateY(20px); pointer-events: none; transition: opacity .25s ease, transform .25s ease; }
+  .float-donate.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+  .no-js .float-donate { opacity: 1; transform: none; pointer-events: auto; }
+  /* a little less photo on short screens so the hero buttons sit higher */
+  .hero-bg, .hero::before { height: min(112vw, 62svh); }
+  .hero-main { padding-top: calc(min(112vw, 62svh) - 110px); }
+}

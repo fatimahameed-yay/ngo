@@ -203,6 +203,26 @@
     });
   });
 
+  /* ---------- Floating donate button (phones) ----------
+     Hidden while the hero buttons / page banner or the footer donate band are on screen,
+     so it never sits on top of another Donate button on short screens. */
+  var floatBtn = $(".float-donate");
+  if (floatBtn) {
+    var watched = [$(".hero .btn-row") || $(".page-hero"), $(".footer-cta")].filter(Boolean);
+    if ("IntersectionObserver" in window && watched.length) {
+      var inView = new Map();
+      var fio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { inView.set(en.target, en.isIntersecting); });
+        var anyVisible = false;
+        inView.forEach(function (v) { if (v) anyVisible = true; });
+        floatBtn.classList.toggle("is-visible", !anyVisible);
+      }, { threshold: 0 });
+      watched.forEach(function (el) { fio.observe(el); });
+    } else {
+      floatBtn.classList.add("is-visible");
+    }
+  }
+
   /* ---------- Footer year ---------- */
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();
