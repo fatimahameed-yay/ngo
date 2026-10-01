@@ -935,3 +935,12 @@ a, button, summary, label, .chip { touch-action: manipulation; -webkit-tap-highl
   .hero-main { padding-bottom: 20px; }
 }
 @keyframes trust-scroll { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+
+/* ---------- Mobile menu fixes ----------
+   backdrop-filter on the header makes it the containing block for the fixed drawer (clipping it to header height),
+   and the header's stacking context sat below the page backdrop. */
+@media (max-width: 1100px) {
+  .site-header { -webkit-backdrop-filter: none; backdrop-filter: none; background: #fff; }
+  body.nav-open .site-header { z-index: 300; }
+  .nav { height: 100vh; height: 100dvh; }
+}

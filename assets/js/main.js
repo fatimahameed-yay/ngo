@@ -16,7 +16,7 @@
 
   /* ---------- Mobile navigation ---------- */
   var nav = $("#site-nav");
-  var toggle = $(".nav-toggle");
+  var toggle = $(".nav-toggle:not(.nav-close)");
   var backdrop = $(".nav-backdrop");
   var closeBtn = $(".nav-close");
   function setNav(open) {
